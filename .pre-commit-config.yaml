@@ -1,0 +1,12 @@
+repos:
+  - repo: https://github.com/markdownlint/markdownlint
+    rev: v0.11.0
+    hooks:
+      - id: markdownlint
+        entry: mdl --style markdownlint.rb
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.1.0
+    hooks:
+      - id: codespell
+        entry: codespell --ignore-words=.codespell_ignore --quiet-level=4 --check-filenames

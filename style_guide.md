@@ -15,7 +15,7 @@ The reviewer is responsible for keeping the overall correctness and code health 
 
 Most of the time these goals do not clash. But there are some gray areas.
 
-A good rule of thumb is that code health should never decrease, not even locally. If a commit constitutes a regression, it is the reviewer responsibility to comment and require a fix before merge, or adding a TODO if time is of the essence and the author wishes to push code and return to the problem offline (but immediately after). On the other hand, it is perfectly fine to push code without changing code health for better or worse.
+A good rule of thumb is that code health should never decrease, not even locally. If a commit constitutes a regression, it is the reviewer responsibility to comment and require a fix before merge, or adding a `TODO` if time is of the essence and the author wishes to push code and return to the problem offline (but immediately after). On the other hand, it is perfectly fine to push code without changing code health for better or worse.
 
 Reviewers should be wary of overextending their duties. For example, reviewers should avoid expanding the limits of the project as the author sees it, and must always look for the minimal stopping point that adheres to increasing/not-changing code health, while keeping correctness and increasing usefulness.
 
@@ -113,7 +113,7 @@ result = gamla.pipe(
 
 ## Work on the single case
 
-Try and minimize transitions between the multiple values space and the singe value space.
+Try and minimize transitions between the multiple values space and the single value space.
 
 No:
 
@@ -572,7 +572,7 @@ gamla.pipe(
 
 - Use the `black` formatter without any configurations.
 - Use the underscore convention to name things which are private to the module, `_like_so`.
-- Unless you have a strict efficency requirement, avoid the mutable data structures - `set`, `list`, etc'. Prefer their immutable alternatives - `frozenset`, `tuple`. In the case of `dict` there is no good alternative, so no other choice. This does not apply to unassigned values such as anonymous literals. E.g. it's fine to do `print([1,2,3])`, or return a mutable datatype within a pipeline that does not expose it.
+- Unless you have a strict efficiency requirement, avoid the mutable data structures - `set`, `list`, etc'. Prefer their immutable alternatives - `frozenset`, `tuple`. In the case of `dict` there is no good alternative, so no other choice. This does not apply to unassigned values such as anonymous literals. E.g. it's fine to do `print([1,2,3])`, or return a mutable datatype within a pipeline that does not expose it.
 - Don't use `defaultdict` - it encourages mutation patterns instead of creating a new `dict`.
 - Take care to retain stability in ordered outputs, otherwise tests become flaky and replaying what happened becomes harder. If order has no meaning use `frozenset`.
 - Use typing as much as you can, especially on APIs. It greatly helps readability and code safety. Avoid `Optional` and `Union` as they increase ambiguity.
@@ -589,4 +589,3 @@ gamla.pipe(
 - Use only arrow functions, and aspire to have them body-less, i.e. instead of `const f = x => {return x+1};` do `const f = x => x+1;` to get a better signal to noise ratio, especially when reading functional components.
 - When possible prefer the `export default` to avoid causing a duplication between a filename and its contents.
 - For safety, prefer keyworded args when a function is not unary. E.g. `const f = ({arg1, arg2, arg3}) => {...}` instead of `const f = (arg1, arg2, arg3) => {...}`.
-
